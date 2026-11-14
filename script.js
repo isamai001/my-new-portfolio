@@ -101,7 +101,7 @@ function erase() {
 }
 
 // Start typing effect on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (textArray.length) setTimeout(type, 1000);
 });
 
@@ -125,7 +125,7 @@ const animateCounters = () => {
         const duration = 2000; // 2 seconds duration
         const stepTime = Math.abs(Math.floor(duration / target));
         let current = 0;
-        
+
         // Handle custom labels
         const getLabel = (val) => {
             if (target === 99) return val + '%';
@@ -172,13 +172,13 @@ filterButtons.forEach(button => {
         filterButtons.forEach(btn => btn.classList.remove('active'));
         // Add active class to clicked button
         button.classList.add('active');
-        
+
         const filterValue = button.getAttribute('data-filter');
-        
+
         portfolioItems.forEach(item => {
             const itemCategory = item.getAttribute('data-category');
             const matches = filterValue === 'all' || itemCategory === filterValue;
-            
+
             if (matches) {
                 item.style.display = 'block';
                 setTimeout(() => {
@@ -382,9 +382,9 @@ const projectData = {
         }
     },
     kiwamitech_web: {
-        title: "Kiwamitech Platform Redesign",
+        title: "Kiwami Marketing System Platform Redesign",
         tagline: "Corporate Portal Refactoring",
-        challenge: "Kiwamitech's legacy site loaded slowly (above 6s) on mobile devices, leading to a high user bounce rate and a decrease in online consultation requests.",
+        challenge: "Kiwami Marketing Sysytem's legacy site loaded slowly (above 6s) on mobile devices, leading to a high user bounce rate and a decrease in online consultation requests.",
         solution: "Refactored the front-end layout with semantic HTML5 and vanilla CSS. Optimized scripts, asset delivery sizes, and call-to-actions, reducing page load to 1.1 seconds.",
         stats: {
             "page load speed": "1.1s",
@@ -564,7 +564,7 @@ const closeProjectModalBtn = document.getElementById('closeProjectModal');
 // Open Modal logic for Featured Projects & Portfolio Items
 function openModal(data, isProject = true) {
     if (!data) return;
-    
+
     document.body.style.overflow = 'hidden'; // Lock background scroll
     projectModal.classList.add('active');
     projectModal.setAttribute('aria-hidden', 'false');
@@ -814,15 +814,15 @@ function startTerminalSimulation(container, lines) {
     if (!container) return;
     container.innerHTML = '';
     let index = 0;
-    
+
     function printLine() {
         if (!document.getElementById('simTerminalBody')) return; // Exit if modal closed
-        
+
         if (index < lines.length) {
             const line = lines[index];
             const div = document.createElement('div');
             div.className = 'terminal-line';
-            
+
             let typeClass = '';
             if (line.type === 'input') {
                 div.innerHTML = `<span style="color:#10b981;font-weight:700;">Isaya-Kiwamitech-QA:~$</span> <span class="term-cmd">${line.cmd}</span>`;
@@ -833,7 +833,7 @@ function startTerminalSimulation(container, lines) {
                 else if (line.type === 'info') typeClass = 'term-info';
                 div.innerHTML = `<span class="${typeClass}">${line.cmd}</span>`;
             }
-            
+
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
             index++;
@@ -844,11 +844,11 @@ function startTerminalSimulation(container, lines) {
 }
 
 // Simulated Phone Tab Toggle
-window.switchPhoneTab = function(btn, tabName, projectKey) {
+window.switchPhoneTab = function (btn, tabName, projectKey) {
     const parent = btn.parentElement;
     parent.querySelectorAll('.phone-nav-item').forEach(item => item.classList.remove('active'));
     btn.classList.add('active');
-    
+
     const screen = document.getElementById('simPhoneScreen');
     if (screen && projectData[projectKey]) {
         screen.innerHTML = projectData[projectKey].previewData.html[tabName];
@@ -856,7 +856,7 @@ window.switchPhoneTab = function(btn, tabName, projectKey) {
 };
 
 // JuaKali Hub Simulated Bookings
-window.triggerJuaKaliBook = function(artisanName) {
+window.triggerJuaKaliBook = function (artisanName) {
     showToast('SMS Alert Dispatched', `Contacting ${artisanName} via JuaKali SMS Gateway...`, 'success');
     setTimeout(() => {
         showToast('Artisan Connected', `A sandbox request was approved by ${artisanName}!`, 'success');
@@ -867,12 +867,12 @@ window.triggerJuaKaliBook = function(artisanName) {
 function showToast(title, message, type = 'success') {
     const container = document.getElementById('toastContainer');
     if (!container) return;
-    
+
     const toast = document.createElement('div');
     toast.className = `toast toast-${type} glass-card`;
-    
+
     const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
-    
+
     toast.innerHTML = `
         <i class="fas ${icon}"></i>
         <div class="toast-content">
@@ -881,21 +881,21 @@ function showToast(title, message, type = 'success') {
         </div>
         <div class="toast-progress"></div>
     `;
-    
+
     container.appendChild(toast);
-    
+
     // Trigger CSS slide-in
     setTimeout(() => {
         toast.classList.add('show');
     }, 30);
-    
+
     // Animate progress indicator bar
     const progress = toast.querySelector('.toast-progress');
     progress.style.transition = 'width 3.8s linear';
     setTimeout(() => {
         progress.style.width = '0%';
     }, 100);
-    
+
     // Automatically close toast
     setTimeout(() => {
         toast.classList.remove('show');
@@ -914,7 +914,7 @@ const messagePreviewText = document.getElementById('messagePreviewText');
 if (inquiryPills.length && whatsappBtn && emailBtn) {
     const phoneNumber = '254707709042';
     const emailAddress = 'isayamaindi001@gmail.com';
-    
+
     const messages = {
         project: {
             preview: "Hello Isaya, I would like to discuss hiring you for an upcoming project. I checked out your portfolio and would love to connect!",
@@ -947,25 +947,25 @@ if (inquiryPills.length && whatsappBtn && emailBtn) {
             emailBody: "Hello Isaya,\n\nI have a general question or inquiry regarding your work, portfolio projects, or freelance availability. Looking forward to hearing from you.\n\nBest regards,"
         }
     };
-    
+
     const updateContactLinks = (reason) => {
         const msgData = messages[reason] || messages.project;
-        
+
         // WhatsApp URL: https://wa.me/number?text=URLencodedtext
         const waText = encodeURIComponent(msgData.whatsapp);
         whatsappBtn.href = `https://wa.me/${phoneNumber}?text=${waText}`;
-        
+
         // Email URL: mailto:email?subject=Subject&body=Body
         const emailSubject = encodeURIComponent(msgData.emailSubject);
         const emailBody = encodeURIComponent(msgData.emailBody);
         emailBtn.href = `mailto:${emailAddress}?subject=${emailSubject}&body=${emailBody}`;
-        
+
         // Update Preview
         if (messagePreviewText) {
             messagePreviewText.textContent = msgData.preview;
         }
     };
-    
+
     // Setup listeners for pills
     inquiryPills.forEach(pill => {
         pill.addEventListener('click', () => {
@@ -973,15 +973,15 @@ if (inquiryPills.length && whatsappBtn && emailBtn) {
             inquiryPills.forEach(p => p.classList.remove('active'));
             // Add active to clicked pill
             pill.classList.add('active');
-            
+
             const reason = pill.getAttribute('data-reason');
             updateContactLinks(reason);
-            
+
             // Dispatch a friendly toast notification for premium interaction feel
             showToast('Channel Ready', `Pre-filled templates updated for ${pill.textContent.trim()}!`, 'success');
         });
     });
-    
+
     // Initialize default links
     updateContactLinks('project');
 }
@@ -998,16 +998,16 @@ if (progressCircle) {
 
 window.addEventListener('scroll', () => {
     if (!backToTop) return;
-    
+
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    
+
     if (scrollTop > 300) {
         backToTop.classList.add('show');
     } else {
         backToTop.classList.remove('show');
     }
-    
+
     if (docHeight > 0 && progressCircle) {
         const scrollPercentage = scrollTop / docHeight;
         const offset = circumference - (scrollPercentage * circumference);
@@ -1024,17 +1024,17 @@ if (backToTop) {
 // Animate elements on scroll trigger hook
 function checkScrollAnimations() {
     const elements = document.querySelectorAll('.service-card, .project-card, .portfolio-item');
-    
+
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
         const screenPosition = window.innerHeight / 1.15;
-        
+
         if (elementPosition < screenPosition) {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
         }
     });
-    
+
     // Skill bars animation check
     const skillsSection = document.querySelector('.skills');
     if (skillsSection) {
@@ -1064,9 +1064,9 @@ function showSlide(n) {
     if (!testimonialSlides.length) return;
     testimonialSlides.forEach(slide => slide.classList.remove('active'));
     testimonialDots.forEach(dot => dot.classList.remove('active'));
-    
+
     currentSlideIdx = (n + testimonialSlides.length) % testimonialSlides.length;
-    
+
     testimonialSlides[currentSlideIdx].classList.add('active');
     testimonialDots[currentSlideIdx].classList.add('active');
 }
